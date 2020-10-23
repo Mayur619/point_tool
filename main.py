@@ -31,7 +31,7 @@ def view():
 @app.route("/next", methods=["POST"])
 def next():
     global current_index,image_name,image_list
-    coordinates_dict[image_name] = (request.form['normalized_x'], request.form['normalized_y'])
+    coordinates_dict[image_name] = (request.form['normalized_x'], request.form['normalized_y'],request.form['direction'])
     current_index += 1
     if current_index==len(image_list):
         write_values(coordinates_dict)
@@ -43,7 +43,7 @@ def write_values(coordinates_dict):
     target_file=open(filename,'w')
     target_file.write("image_name,normalized_x,normalized_y\n")
     for key,value in coordinates_dict.items():
-        target_file.write("{0},{1},{2}\n".format(key,value[0],value[1]))
+        target_file.write("{0},{1},{2},{3}\n".format(key,value[0],value[1],value[2]))
     target_file.close()
 
 if __name__ == '__main__':
