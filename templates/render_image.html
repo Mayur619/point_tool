@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body>
+    <img id="image" src="{{url_for('static',filename=image_path)}}" >
+    <form action="/next" method="POST">
+        <input type="hidden" id="x" name="normalized_x"/>
+        <input type="hidden" id="y" name="normalized_y"/>
+        <input type="submit" value="Next image"/>
+    </form>
+
+    <script>
+        $('#image').on('click',function(event){
+            let normalized_x=event.pageX/$(this).width();
+            let normalized_y=event.pageY/$(this).height();
+            console.log(normalized_x);
+            console.log(normalized_y);
+            $('#x').val(normalized_x);
+            $('#y').val(normalized_y);
+        });
+    </script>
+</body>
+</html>
