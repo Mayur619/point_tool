@@ -41,7 +41,7 @@ def next():
 
 def write_values(coordinates_dict):
     target_file=open(filename,'w')
-    target_file.write("image_name,normalized_x,normalized_y\n")
+    target_file.write("image_name,normalized_x,normalized_y,orientation\n")
     for key,value in coordinates_dict.items():
         target_file.write("{0},{1},{2},{3}\n".format(key,value[0],value[1],value[2]))
     target_file.close()
